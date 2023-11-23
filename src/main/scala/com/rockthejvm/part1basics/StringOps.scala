@@ -5,37 +5,36 @@ object StringOps {
   val aString: String = "Hello, I am learning Scala"
 
   // string functions
-  val secondChar = aString.charAt(1)
-  val firstWord = aString.substring(0, 5) // "Hello"
-  val words = aString.split(" ") // Array("Hello,", "I", "am", "learning", "Scala")
+  val secondChar = aString.charAt(1) // 'e'
+  val aSubstring = aString.substring(7, 11) // "I am"
+  val words = aString.split(" ") // Array("Hello", "I", "am", "learning", "Scala")
   val startsWithHello = aString.startsWith("Hello") // true
-  val allDashes = aString.replace(' ', '-')
-  val allUppercase = aString.toUpperCase() // also toLowerCase()
-  val nChars = aString.length
+  val allCaps = aString.toUpperCase() // "HELLO, I AM LEARNING SCALA" also toLowerCase
+  val allDashes = aString.replace(" ", "-") // "Hello,-I-am-learning-Scala"
+  val nChars = aString.length // 26
 
   // other functions
-  val reversed = aString.reverse
-  val aBunchOfChars = aString.take(10)
-
-  // parse to numeric
+  val reversed = aString.reverse // "alacS gninrael ma I ,olleH"
+  val aBunchOfChars = aString.take(5) // "Hello"
+  // parse to numberic
   val numberAsString = "2"
-  val number = numberAsString.toInt
+  val number = numberAsString.toInt // 2
 
-  // s-interpolation
-  val name = "Alice"
-  val age = 12
-  val greeting = "Hello, I'm " + name + " and I am " + age + "years old."
-  val greeting_v2 = s"Hello, I'm $name and I'm $age years old."
-  val greeting_v3 = s"Hello, I'm $name and I will be turning ${age + 1} years old."
+  // interpolation
+  val name = "Jose"
+  val age = 33
+  val greeting = s"Hello, my name is $name and I am $age years old" // "Hello, my name is Jose and I am 33 years old"
+  val anotherGreeting = s"Hello, my name is $name and I will be turning ${age + 1} years old" // "Hello, my name is Jose and I will be turning 34 years old"
 
   // f-interpolation
   val speed = 1.2f
-  val myth = f"$name can eat $speed%2.5f burgers per minute."
+  val myth = f"$name can eat $speed%2.2f burgers per minute" // "Jose can eat 1.20 burgers per minute"
 
   // raw-interpolation
-  val escapes = raw"This is a \n newline"
+  val escaped = "This is a \n newline" // "This is a \n newline"
+  val raw = raw"This is a \n newline" // "This is a \n newline"
 
   def main(args: Array[String]): Unit = {
-    println(escapes)
+
   }
 }
