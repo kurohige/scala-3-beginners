@@ -4,7 +4,7 @@ object CBNvsCBV {
 
   // CBV = call by value = arguments are evaluted before function invocation
   def aFunction(arg: Int): Int = arg + 1
-  val aComputation = aFunction(23 + 67)
+  val aComputation: Unit = aFunction(23 + 67)
 
   // CBN = call by name = arguments are passed literally and evaluated at every reference
   def aByNameFunction(arg: => Int): Int = arg + 1
