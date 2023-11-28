@@ -133,18 +133,27 @@ class DoublerList extends MyTransformer[Int, LList[Int]] {
     Cons(value, new Cons(value + 1, new Empty))
 }
 
+// find test
+object LList{
+  def find[A](list: LList[A], predicate: MyPredicate[A]): A =
+    if (list.isEmpty) throw new NoSuchElementException
+    else if (predicate.test(list.head)) list.head
+    else find(list.tail, predicate)
+
+}
+
 object LListTest {
   def main(args: Array[String]): Unit = {
 
     val empty= new Empty[Int]
     println(empty.isEmpty)
 
-    val first3Numbers = Cons(1,  Cons(2,  Cons(3, Empty)))
+    val first3Numbers = Cons(1,  Cons(2,  Cons(3, Empty())))
     val first3Numbers_v2 = empty.add(1).add(2).add(3)
     println(first3Numbers.head)
     println(first3Numbers_v2.isEmpty)
 
-    val someStrings = new Cons("Scala", nw Cons("Java",  Cons("Python", Empty)))
+    val someStrings = new Cons("Scala", Cons("Java",  Cons("Python", Empty())))
     println(someStrings)
 
     val evenPredicate = new MyPredicate[Int] {
@@ -175,5 +184,11 @@ object LListTest {
     // flatMap testing
     val flatMapped = first3Numbers.flatMap(new DoublerList)
     println(flatMapped)
+
+    // find test
+    println(LList.find[Int](first3Numbers, evenPredicate))//2
+//    println(LList.find[Int](first3Numbers, new MyPredicate[Int] {
+//      override def test(element: Int): Boolean = element > 5
+//    }))//1
   }
 }

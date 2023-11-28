@@ -87,10 +87,10 @@ object OOBasics {
      val novel = new Novel("Great Expectations", 1861, charlesDickens)
 
      println(charlesDickens.fullName)
-    println(novel.authorAge)
+     println(novel.authorAge)
 
-    println(novel.isWrittenBy(charlesDickens))
-    println(novel.isWrittenBy(charlesDickensImpostor))
+     println(novel.isWrittenBy(charlesDickens))
+     println(novel.isWrittenBy(charlesDickensImpostor))
    }
 
 
