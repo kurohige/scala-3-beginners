@@ -17,7 +17,7 @@ object PackagesImports {
 
   // import everything
   import com.rockthejvm.practice.*
-  val aPredicate: MyPredicate[Int] = ???
+  val aPredicate: Cons[Int] = ???
 
   /// import multiple symbols
   import PhysicsConstant.{SPEED_OF_LIGHT, EARTH_GRAVITY}
