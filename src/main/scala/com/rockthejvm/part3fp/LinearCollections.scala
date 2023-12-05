@@ -61,8 +61,53 @@ object LinearCollections {
     // vectors are fast for large sizes
   }
 
+  def smallBenchMark(): Unit = {
+    val maxRuns = 1000
+    val maxCapacity = 1000000
+
+    def test(collection: Seq[Int]): Double = {
+      val random = new scala.util.Random()
+      val times = for {
+        _ <- 1 to maxRuns
+      } yield {
+        val index = random.nextInt(maxCapacity)
+        val element = random.nextInt()
+
+        val currentTime = System.nanoTime()
+        val updatedCollection = collection.updated(index, element)
+        System.nanoTime() - currentTime
+      }
+
+      times.sum * 1.0 / maxRuns
+    }
+
+    val numbersList = (1 to maxCapacity).toList
+    val numbersVector = (1 to maxCapacity).toVector
+
+    println(test(numbersList))
+    println(test(numbersVector))
+  }
+
+  // sets
+  def testSets(): Unit = {
+    val aSet = Set(1, 2, 3, 4, 1, 2, 3, 4) // Set(1, 2, 3, 4)
+    // sets doesn't have duplicates
+    // main API: contains, add, remove - test if in the set, add/remove an element
+    // no ordering
+    val contains3 = aSet.contains(3) // O(1) complexity
+    val anAddedSet = aSet + 5 // O(1) complexity
+    val aRemovedSet = aSet - 3 // O(1) complexity
+    // sets are iterable
+    val allElements = aSet.foreach(println)
+    // utility methods
+    val aUnion = Set(1, 2, 3) ++ Set(3, 4, 5) // Set(1, 2, 3, 4, 5)
+    val anIntersection = Set(1, 2, 3) & Set(3, 4, 5) // Set(3)
+    val aDifference = Set(1, 2, 3) &~ Set(3, 4, 5) // Set(1, 2)
+    // sets are fast
+  }
+
   def main(args: Array[String]): Unit = {
-    testRanges()
+    smallBenchMark()
   }
 
 }
